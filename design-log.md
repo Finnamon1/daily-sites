@@ -12,6 +12,14 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-22 — Putting the disclaimer in the footer voice ("a planning aid, not an
   official product") kept copy honest and on-brand, so write functional copy in the
   product's own voice rather than legal boilerplate.
+- 2026-06-22 — picsum returns random photos, so a shared sepia+multiply overlay on
+  every image unified mismatched content into one cohesive menu — when stock imagery
+  is unavoidable, treat it consistently rather than dropping raw frames.
+- 2026-06-22 — A cursor-following preview (motion fixed at pointer + spring) is the
+  signature interaction, but it's pointer-only: pair it with `lg:hidden` inline
+  thumbnails so touch users still get the image, never a dead row.
+- 2026-06-22 — Cream-on-charcoal text below ~/55 opacity drops under WCAG AA, so
+  reserve the faintest tints for decoration and keep real copy at /60+.
 - 2026-06-22 — A cursor-following image preview tracks clientX/Y on a fixed motion
   div, then offset it (translate-x-8, not centered) so it never covers the row label
   you're reading; gate it behind useReducedMotion with an inline thumbnail fallback.
