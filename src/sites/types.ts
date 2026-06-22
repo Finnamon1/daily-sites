@@ -13,6 +13,7 @@ export interface SiteMeta {
   /** The featured interaction technique, e.g. "Cursor spotlight + magnetic buttons" */
   interaction: string
   /** Names of the pages this multi-page site ships, e.g. ["Home", "Menu", "About"] */
+  /** Names of the pages in the multi-page site, e.g. ["Home", "Pricing", "About"] */
   pages?: string[]
 }
 

@@ -20,3 +20,11 @@ become automatic so this never exceeds ~30 lines.
   thumbnails so touch users still get the image, never a dead row.
 - 2026-06-22 — Cream-on-charcoal text below ~/55 opacity drops under WCAG AA, so
   reserve the faintest tints for decoration and keep real copy at /60+.
+- 2026-06-22 — A cursor-following image preview tracks clientX/Y on a fixed motion
+  div, then offset it (translate-x-8, not centered) so it never covers the row label
+  you're reading; gate it behind useReducedMotion with an inline thumbnail fallback.
+- 2026-06-22 — Muted brown-on-cream labels at ~3:1 failed AA at text-xs; bumped to a
+  darker tone, so check small decorative meta text for contrast, not just body copy.
+- 2026-06-22 — Load display+body fonts via index.html <link> and apply with Tailwind
+  arbitrary families (font-['Fraunces']) per-element, so type stays scoped to the
+  site without touching global CSS or the gallery shell.
