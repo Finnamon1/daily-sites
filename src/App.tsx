@@ -9,7 +9,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Gallery />} />
-          <Route path="/site/:slug" element={<SiteView />} />
+          <Route path="/site/:slug/*" element={<SiteView />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

@@ -12,6 +12,8 @@ export interface SiteMeta {
   type: string
   /** The featured interaction technique, e.g. "Cursor spotlight + magnetic buttons" */
   interaction: string
+  /** Names of the pages in the multi-page site, e.g. ["Home", "Pricing", "About"] */
+  pages?: string[]
 }
 
 export interface SiteModule {
