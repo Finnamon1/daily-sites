@@ -11,22 +11,19 @@ become automatic so this never exceeds ~30 lines.
   reads as moonlight, not a second brand colour or gradient soup.
 - 2026-06-23 — On a light paper/bone bg, near-black text at /55–/60 alpha fails AA at
   ≤14px (composites to ~3.5:1); meaningful meta needs /70+, reserve /55 for icons.
-- 2026-06-23 — Editorial pairing: a high-contrast optical serif (Fraunces) for display +
-  a humanist sans body + mono small-caps labels carries a magazine; let the lone accent
-  do kicker bars and active states only, so colour never becomes a second voice.
-- 2026-06-23 — Scroll parallax: clip a frame (overflow-hidden), scale inner img ~1.2
-  BEFORE translating ±12% on scrollYProgress so drift never exposes an edge; zero it
-  under useReducedMotion.
 - 2026-06-23 — Count-up: a raw requestAnimationFrame + cubic ease gated on useInView({once})
-  beats framer's animate() for stat rows; jump to target under reduced motion. Two speeds
-  read as two events — slow ~1.4s for hero stats, fast ~600ms re-count keyed to a toggle
-  (monthly/annual) so a price feels recalculated, not just re-rendered.
-- 2026-06-23 — SVG "self-drawing" chart: animate pathLength only (cheap); to REDRAW on a
-  range/data switch, remount with key={range} — animating the `d` string or dash-offset
-  across a changed path just snaps. Bars stagger via per-bar delay = i*0.08.
-- 2026-06-23 — A photo-free dashboard sells its featured interaction best by planting a
-  live count-up + self-drawing chart inside a hero preview card on the marketing page, so
-  the technique earns the click before the user reaches the actual app view.
-- 2026-06-23 — On a light dev-tool page a single dark terminal/code panel is the
-  strongest "hero image": crafted mono + one green accent beats stock photo, and
-  spends your contrast budget on the one element that matters.
+  beats framer's animate() for stat rows; jump to target under reduced motion. Slow ~1.4s
+  for hero stats, fast ~600ms re-count keyed to a toggle so a number feels recalculated.
+- 2026-06-23 — On a light dev-tool page a single dark terminal/code panel is the strongest
+  "hero image": crafted mono + one accent beats stock photo, spending contrast budget on
+  the one element that matters.
+- 2026-06-23 — Scroll-snap as the hero interaction: nest a `h-[calc(100svh-4rem)]`
+  (subtract the sticky header) `snap-y snap-mandatory` scroller with panels `snap-start`,
+  last `snap-end`; drop the snap classes under useReducedMotion; past the last panel the
+  wheel bubbles to window so normal flow + footer still reach.
+- 2026-06-23 — A continuous backdrop across snap panels must live on the SCROLLER element
+  (a static gradient via style), never an absolute child — an absolute child anchors to the
+  scroll origin and slides away after panel one.
+- 2026-06-23 — Album/cover art from layered radial-gradients + a label code reads more
+  designed than a stock cover; any wordmark over it needs a bottom dark scrim + cream text,
+  since the gradient's dark half silently kills contrast.
