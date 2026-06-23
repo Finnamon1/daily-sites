@@ -6,64 +6,31 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-22 — Putting the disclaimer in the footer voice ("a planning aid, not an
-  official product") kept copy honest and on-brand, so write functional copy in the
-  product's own voice rather than legal boilerplate.
-- 2026-06-22 — A cursor-following image preview tracks clientX/Y on a fixed motion
-  div, then offset it (translate-x-8, not centered) so it never covers the row label
-  you're reading; gate it behind useReducedMotion with an inline thumbnail fallback.
-- 2026-06-22 — Faint tints fail AA fastest at small sizes: footer/meta text on dark
-  near ~4:1 reads "fine" but isn't, so contrast-check decorative micro-copy, not just body.
-- 2026-06-22 — Load display+body fonts via index.html <link> and apply with Tailwind
-  arbitrary families (font-['Fraunces']) per-element, so type stays scoped to the
-  site without touching global CSS or the gallery shell.
-- 2026-06-22 — useMotionTemplate binds a spring-smoothed pointer % straight into a
-  radial-gradient background, so a cursor-reactive glow costs no per-frame React
-  render; gate it on pointerType === "mouse" + reduced motion with a static fallback.
-- 2026-06-22 — Putting framer-motion `layout` on both the grid and its cards makes a
-  filtered list reflow by sliding into place, so lean on layout instead of hand-rolled
-  FLIP whenever tabs/filters add or remove items.
+- 2026-06-22 — Write functional/disclaimer copy in the product's own voice ("a
+  planning aid, not an official product"), not legal boilerplate.
 - 2026-06-22 — One saturated accent stays disciplined on near-black only if every
   secondary "depth" colour sits under ~0.08 alpha and is purely decorative, so a glow
   reads as moonlight, not a second brand colour or gradient soup.
-- 2026-06-22 — Write functional/disclaimer copy in the product's own voice ("a
-  planning aid, not an official product"), not legal boilerplate.
-- 2026-06-22 — picsum returns random photos; a single shared overlay (warm
-  multiply) on every frame unifies mismatched stock into one cohesive look.
-- 2026-06-22 — Load fonts via index.html <link> and apply with Tailwind arbitrary
-  families (font-['Fraunces']) per-element, so type stays scoped to the site.
-- 2026-06-23 — "Morphing blobs" read best as blurred divs animating borderRadius
-  keyframes, not SVG path morphing — cheap and never breaks interpolation.
-- 2026-06-23 — Animated counters with a prefix/suffix read wrong mid-count; count
-  a clean integer and put framing words in the static label beneath.
-- 2026-06-23 — For scroll parallax, clip a frame (overflow-hidden) and scale the
-  inner img ~1.25 BEFORE translating ±12% on scrollYProgress, so drifting never
-  exposes empty edges; hold it still under useReducedMotion.
-- 2026-06-23 — Register a site's palette as namespaced Tailwind tokens (clay/paper/
-  ink) instead of raw bg-[#hex]; opacity modifiers (text-ink/65) then make tuning
-  AA contrast trivial across dozens of labels.
-- 2026-06-23 — On a light paper bg, text-ink/55 still fails AA at ≤14px; neutral
-  body/meta needs /65+ (~4.6:1). Reserve /45–/55 for ≥18px or pure decoration.
-- 2026-06-22 — Putting the disclaimer in the footer voice ("a planning aid, not an
-  official product") kept copy honest and on-brand, so write functional copy in the
-  product's own voice rather than legal boilerplate.
-- 2026-06-22 — A cursor-following preview (motion fixed at pointer + spring) is the
-  signature interaction, but it's pointer-only: gate it behind useReducedMotion and
-  pair it with `lg:hidden` inline thumbnails so touch users never get a dead row.
-- 2026-06-22 — Muted decorative meta text (brown-on-cream ~3:1) failed AA at text-xs;
-  check small label/meta contrast, not just body copy, and keep real copy at /60+.
-- 2026-06-23 — Animated counters that take a prefix/suffix can read wrong mid-count
-  ("1 of 0"): only count a clean integer and put framing words in the label beneath,
-  so every interpolated frame stays truthful.
-- 2026-06-23 — index.html had two href attrs on one font <link> (only the last wins,
-  silently dropping families); merge every family into ONE valid href before adding a
-  new typeface, or your display font just won't load.
-- 2026-06-23 — Scroll parallax reads cleanest when the image is held at scale ~1.18
-  inside an overflow-crop frame so the vertical drift never exposes an edge, and the
-  whole transform is zeroed under useReducedMotion.
-- 2026-06-23 — A layered, offset two-image hero (absolute frames at different widths)
-  beats one centered photo; give each frame its own parallax distance so they separate
-  as you scroll and create depth for free.
-- 2026-06-23 — Hover image-reveal: start the photo grayscale+dimmed and warm it to full
-  colour while a caption's max-h animates open — drive it from group-hover AND
-  group-focus-visible so keyboard users get the identical reveal.
+- 2026-06-23 — Load fonts via index.html <link> applied with Tailwind arbitrary
+  families (font-['IBM_Plex_Sans']) per-element, and merge every family into ONE
+  alphabetised href — multiple href attrs silently drop all but the last.
+- 2026-06-23 — On a light paper/bone bg, near-black text at /55–/60 alpha fails AA at
+  ≤14px (composites to ~3.5:1); meaningful meta needs /70+, reserve /55 for icons.
+- 2026-06-23 — useMotionTemplate binds a spring-smoothed pointer % into a radial
+  gradient so a cursor glow costs no React render; gate on pointer + reduced motion.
+- 2026-06-23 — framer-motion `layout` on both grid and cards reflows a filtered list
+  by sliding; lean on it instead of hand-rolled FLIP for tabs/filters.
+- 2026-06-23 — Scroll parallax: clip a frame (overflow-hidden), scale inner img ~1.2
+  BEFORE translating ±12% on scrollYProgress so drift never exposes an edge; zero it
+  under useReducedMotion.
+- 2026-06-23 — Hover image-reveal: start grayscale+dimmed, warm to full colour while a
+  caption max-h opens; drive from group-hover AND group-focus-visible for keyboards.
+- 2026-06-23 — A self-typing terminal reads alive-not-gratuitous when it types ONCE on
+  useInView({once}) then stops at a blinking cursor; gate the whole thing on
+  useReducedMotion to dump the full script instantly.
+- 2026-06-23 — For 3D tilt depth, put transformStyle:preserve-3d on the card's inner
+  panel and push children with a translateZ ladder (icon 45px > title 30px > body 16px)
+  so they part at different depths; uniform Z looks like a flat sticker.
+- 2026-06-23 — On a light dev-tool page a single dark terminal/code panel is the
+  strongest "hero image": crafted mono + one green accent beats stock photo, and
+  spends your contrast budget on the one element that matters.
