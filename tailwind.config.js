@@ -17,6 +17,19 @@ export default {
           800: "#823c20",
           900: "#5e2c18",
         },
+        // Palette for 2026-06-23-paragon (repertory cinema). Namespaced under
+        // `screen-*`; safe to share. Warm charcoal + a single sodium-bulb amber.
+        screen: {
+          ink: "#15110c",
+          panel: "#1d1812",
+          raise: "#272019",
+          line: "#3a3127",
+          bone: "#f4ede0",
+          ash: "#a99e8c",
+          amber: "#f4b53c",
+          amberdeep: "#cf8c16",
+          red: "#bd4a32",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
