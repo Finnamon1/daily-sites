@@ -15,6 +15,12 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-23 — Scroll-velocity marquee = useScroll→useVelocity→useSpring→useTransform feeding a
   useAnimationFrame that adds to a baseX MotionValue; render 4 identical copies and wrap(-25,-50)
   the % translate for a seamless loop. Gate the frame on useReducedMotion so it sits static.
-- 2026-06-23 — To un-set an inline style on hover, use the !important class modifier: inline styles
-  only lose to !important rules, so `group-hover:!filter-none` cleanly lifts an inline grayscale
-  duotone to full colour — no state, no JS.
+- 2026-06-23 — Progress-reveal over a many-bar waveform cheaply: render the bars twice — a neutral
+  base, then an accent copy inside an `overflow-hidden` wrapper whose width = progress% — so playback
+  resizes ONE element, not 120. Set the inner copy's width to the track's measured px so bars align.
+- 2026-06-23 — A simulated transport reads as real: useAnimationFrame advances a 0→1 progress at a
+  fixed visual sweep (~72s) while the timecode maps progress→real duration — no audio file needed.
+  Gate decorative bar shimmer behind a `[data-shimmer]` rule disabled in prefers-reduced-motion.
+- 2026-06-23 — For a gap-px hairline grid the GRID CELL must carry the panel bg + padding (put
+  `h-full` on the inner block); padding on a transparent Reveal wrapper makes the line colour bleed
+  around the content instead of reading as a 1px rule.
