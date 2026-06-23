@@ -6,12 +6,19 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-22 — Set the baseline: deep navy palette + one sky accent reads as
-  "marine" far better than a generic blue gradient, so commit to a subject-specific
-  palette over a default one.
-- 2026-06-22 — Animating chart contours with a slow horizontal drift made a static
-  mockup feel live without distracting, so prefer ambient low-amplitude motion over
-  big flashy effects.
-- 2026-06-22 — Putting the disclaimer in the footer voice ("a planning aid, not an
-  official product") kept copy honest and on-brand, so write functional copy in the
-  product's own voice rather than legal boilerplate.
+- 2026-06-23 — Hover-reveal copy is invisible to touch/keyboard: render it statically on mobile
+  and gate the animated version to md+; wrap the whole site in <MotionConfig reducedMotion="user">
+  so every Reveal/transition degrades to opacity-only for free.
+- 2026-06-23 — Staggered grid entrance: a framer parent variant with {staggerChildren} + child
+  variants, initial="hidden" animate="show", and remount the grid with key={filter} so every
+  category switch re-fans the cards in.
+- 2026-06-23 — Draggable inertia carousel as the FEATURED interaction: measure
+  scrollWidth−offsetWidth into a `bound`, drive a useMotionValue x with drag="x"
+  dragConstraints={{left:-bound,right:0}} + dragMomentum, mirror it with prev/next buttons via
+  clamped animate(x,…), and drop momentum under reduced motion — touch gets swipe, keys get buttons.
+- 2026-06-23 — Skip CSS-vars-in-Tailwind (`[color:var(--ink)]/60`): the custom-prop key fights TS
+  and the /alpha modifier is flaky. Hardcode hex in arbitrary classes (`text-[#1a2016]/70`) like the
+  other sites — proven, simpler, zero type churn.
+- 2026-06-23 — Never wrap a styled <button> in a <NavLink> (nested interactive = invalid HTML):
+  give the CTA component an optional `to` and branch to render a NavLink vs a button, wrapping
+  either one in <Magnetic>.
