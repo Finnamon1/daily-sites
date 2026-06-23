@@ -16,15 +16,19 @@ become automatic so this never exceeds ~30 lines.
   every image unified mismatched content into one cohesive menu — when stock imagery
   is unavoidable, treat it consistently rather than dropping raw frames.
 - 2026-06-22 — A cursor-following preview (motion fixed at pointer + spring) is the
-  signature interaction, but it's pointer-only: pair it with `lg:hidden` inline
-  thumbnails so touch users still get the image, never a dead row.
-- 2026-06-22 — Cream-on-charcoal text below ~/55 opacity drops under WCAG AA, so
-  reserve the faintest tints for decoration and keep real copy at /60+.
-- 2026-06-22 — A cursor-following image preview tracks clientX/Y on a fixed motion
-  div, then offset it (translate-x-8, not centered) so it never covers the row label
-  you're reading; gate it behind useReducedMotion with an inline thumbnail fallback.
-- 2026-06-22 — Muted brown-on-cream labels at ~3:1 failed AA at text-xs; bumped to a
-  darker tone, so check small decorative meta text for contrast, not just body copy.
+  signature interaction, but it's pointer-only: gate it behind useReducedMotion and
+  pair it with `lg:hidden` inline thumbnails so touch users never get a dead row.
+- 2026-06-22 — Muted decorative meta text (brown-on-cream ~3:1) failed AA at text-xs;
+  check small label/meta contrast, not just body copy, and keep real copy at /60+.
 - 2026-06-22 — Load display+body fonts via index.html <link> and apply with Tailwind
   arbitrary families (font-['Fraunces']) per-element, so type stays scoped to the
   site without touching global CSS or the gallery shell.
+- 2026-06-23 — "Morphing blobs" read best as blurred divs animating borderRadius
+  keyframes (organic) rather than SVG path morphing, with one tied to the cursor via
+  spring — cheap, reliable, and never produces a broken interpolation.
+- 2026-06-23 — Animated counters that take a prefix/suffix can read wrong mid-count
+  ("1 of 0"): only count a clean integer and put framing words in the label beneath,
+  so every interpolated frame stays truthful.
+- 2026-06-23 — index.html had two href attrs on one font <link> (only the last wins,
+  silently dropping families); merge every family into ONE valid href before adding a
+  new typeface, or your display font just won't load.
