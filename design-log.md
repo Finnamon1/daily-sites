@@ -6,21 +6,19 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-23 — On near-black/dark grounds reserve the light or bright accent for large display,
-  icons and mono metadata; body/muted text stays a warm grey — a light-on-dark accent clears AA
-  easily but reads as shouting when it carries paragraphs.
 - 2026-06-23 — Don't gate the featured interaction behind hover/scroll on touch: render the desktop
   effect as a stacked/inline/centred variant so every view is reachable without a cursor.
 - 2026-06-23 — Before/after compare slider: clip the overlay image with `clipPath: inset(0 ${100-pos}% 0 0)`
   from one percent of state; make the handle a `role="slider"` button with arrow-key handlers. Pointer
   events (down/move/up + setPointerCapture) cover mouse and touch in one path — no separate touch code.
-- 2026-06-23 — Two unrelated picsum seeds can read as one "before/after" room if you grade them apart
-  (before: grayscale+dim, after: saturate) and label the corners — the grade sells what the photos can't.
 - 2026-06-23 — CSS grid isn't masonry: for varied-height cards set `auto-rows-[14px]` + per-card
   `[grid-row:span_N]` to size by track count — deliberate asymmetry, no JS layout lib.
-- 2026-06-23 — Morph a "blob" by animating border-radius between asymmetric `% / %` values plus a slow
-  rotate on a framer loop — robust and cheaper than animating an SVG path `d` (no point-count match),
-  and stays alive on touch since it isn't hover-gated.
-- 2026-06-23 — Bright decorative blobs may overlap a large bold hero headline (dark ink clears AA's
-  3:1 large-text bar) but must stay off body copy (4.5:1) — cluster crisp blobs around display/empty
-  zones, drop a heavily-blurred low-opacity wash behind paragraphs.
+- 2026-06-23 — For a cursor-reactive field of many marks, drive it on ONE canvas + rAF loop (clearRect,
+  per-node displacement by proximity to a spring-lagged pointer) — not N React/DOM nodes. Stays 60fps
+  with hundreds of ticks, and a phantom Lissajous pointer keeps it alive where there's no cursor.
+- 2026-06-23 — Accent contrast is ground-dependent: a bright accent that clears AA on near-black
+  (≈4.8:1) can fail on warm paper (≈3.3:1) for small text. Keep ONE bright token for dark grounds +
+  large display, and a deeper sibling (≈5:1) for small links/labels on light — pick per background.
+- 2026-06-23 — "Draw" an SVG diagram by animating framer `pathLength` 0→1 per segment with staggered
+  delays (gated on useInView + reduced-motion) — crisper and cheaper than animating path `d`, and the
+  stagger reads as construction order (down tube, top tube, stays…).
