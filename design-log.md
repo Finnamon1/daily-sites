@@ -6,12 +6,15 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-22 — Set the baseline: deep navy palette + one sky accent reads as
-  "marine" far better than a generic blue gradient, so commit to a subject-specific
-  palette over a default one.
-- 2026-06-22 — Animating chart contours with a slow horizontal drift made a static
-  mockup feel live without distracting, so prefer ambient low-amplitude motion over
-  big flashy effects.
-- 2026-06-22 — Putting the disclaimer in the footer voice ("a planning aid, not an
-  official product") kept copy honest and on-brand, so write functional copy in the
-  product's own voice rather than legal boilerplate.
+- 2026-06-23 — A single accent that fails AA as small text (terracotta ≈3:1 on cream) can still
+  anchor a palette: reserve the bright tone for icons / large display / dark grounds, swap to a
+  darkened sibling for small labels on light grounds, and pass a `tone` prop rather than forking the
+  label component (FLARE #ff4d2e ≈2.7:1 on cream → #b8371d ≈5:1; ≈5.5:1 on near-black is fine).
+- 2026-06-23 — Don't gate the featured interaction behind hover/scroll on touch: render the desktop
+  effect as a stacked/inline variant so every view is reachable without a cursor.
+- 2026-06-23 — Scroll-velocity marquee = useScroll→useVelocity→useSpring→useTransform feeding a
+  useAnimationFrame that adds to a baseX MotionValue; render 4 identical copies and wrap(-25,-50)
+  the % translate for a seamless loop. Gate the frame on useReducedMotion so it sits static.
+- 2026-06-23 — To un-set an inline style on hover, use the !important class modifier: inline styles
+  only lose to !important rules, so `group-hover:!filter-none` cleanly lifts an inline grayscale
+  duotone to full colour — no state, no JS.
