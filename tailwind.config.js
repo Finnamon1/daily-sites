@@ -6,6 +6,17 @@ export default {
     container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
     extend: {
       colors: {
+        // Palette for 2026-06-23-meridian (real-estate). Namespaced; safe to share.
+        ink: "#1b1a17",
+        paper: "#f6f2ea",
+        paperdeep: "#efe8dc",
+        clay: {
+          200: "#ecd2c4",
+          600: "#b85c34",
+          700: "#a44e2a",
+          800: "#823c20",
+          900: "#5e2c18",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
