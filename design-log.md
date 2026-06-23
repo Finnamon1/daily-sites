@@ -12,13 +12,16 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-23 — Staggered grid entrance: a framer parent variant with {staggerChildren} + child
   variants, initial="hidden" animate="show", and remount the grid with key={filter} so every
   category switch re-fans the cards in.
-- 2026-06-23 — Draggable inertia carousel as the FEATURED interaction: measure
-  scrollWidth−offsetWidth into a `bound`, drive a useMotionValue x with drag="x"
-  dragConstraints={{left:-bound,right:0}} + dragMomentum, mirror it with prev/next buttons via
-  clamped animate(x,…), and drop momentum under reduced motion — touch gets swipe, keys get buttons.
-- 2026-06-23 — Skip CSS-vars-in-Tailwind (`[color:var(--ink)]/60`): the custom-prop key fights TS
-  and the /alpha modifier is flaky. Hardcode hex in arbitrary classes (`text-[#1a2016]/70`) like the
-  other sites — proven, simpler, zero type churn.
 - 2026-06-23 — Never wrap a styled <button> in a <NavLink> (nested interactive = invalid HTML):
   give the CTA component an optional `to` and branch to render a NavLink vs a button, wrapping
   either one in <Magnetic>.
+- 2026-06-23 — Horizontal scroll-pin: a tall outer wrapper whose height = trackWidth−viewport+vh,
+  a sticky h-screen inner, and x = useTransform(scrollYProgress,[0,1],[0,-distance]). Measure the
+  REAL track ref (not a placeholder span) in useEffect + on resize + a 300ms settle timeout; bail to
+  a native overflow-x snap strip under reduced motion so it never scroll-jacks touch/keyboard.
+- 2026-06-23 — Call useMotionValueEvent only with a real MotionValue: split the optional-progress
+  branch into its own child component instead of shimming a fake MV — hooks stay unconditional, types
+  stay honest.
+- 2026-06-23 — On a near-black ground, warm off-white text needs ≥/55 for small (sub-12px) copy to
+  clear WCAG AA (~5:1); /35–/45 only passes large text. Cohere random picsum frames into one body of
+  work with a shared treatment: grayscale(.55)+contrast on the img, a soft-light accent wash over it.
