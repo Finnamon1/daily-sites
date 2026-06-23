@@ -6,12 +6,20 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-22 — Set the baseline: deep navy palette + one sky accent reads as
-  "marine" far better than a generic blue gradient, so commit to a subject-specific
-  palette over a default one.
-- 2026-06-22 — Animating chart contours with a slow horizontal drift made a static
-  mockup feel live without distracting, so prefer ambient low-amplitude motion over
-  big flashy effects.
-- 2026-06-22 — Putting the disclaimer in the footer voice ("a planning aid, not an
-  official product") kept copy honest and on-brand, so write functional copy in the
-  product's own voice rather than legal boilerplate.
+- 2026-06-23 — Horizontal scroll-pin: a tall outer wrapper whose height = trackWidth−viewport+vh,
+  a sticky h-screen inner, and x = useTransform(scrollYProgress,[0,1],[0,-distance]). Measure the
+  REAL track ref in useEffect + on resize + a 300ms settle timeout; bail to a native overflow-x snap
+  strip under reduced motion so it never scroll-jacks touch/keyboard.
+- 2026-06-23 — Call useMotionValueEvent only with a real MotionValue: split the optional-progress
+  branch into its own child component instead of shimming a fake MV — hooks stay unconditional.
+- 2026-06-23 — Scroll-scrubbed device: drive the active screen off each step's onViewportEnter with a
+  "-45% 0px -45% 0px" viewport band (not scrollYProgress→index, which fights at boundaries), so the
+  phone always shows the screen for the step centered in view; keep the phone sticky top-[18vh] inside
+  a tall steps column so it travels the whole section.
+- 2026-06-23 — A single accent that fails AA as small text (terracotta ≈3:1 on cream, ≈4.35:1 as a
+  button bg) can still anchor a palette: reserve the bright tone for icons / large display / dark
+  grounds, swap to a darkened sibling (#a8431d ≈5.3:1) for small labels, and on dark cards use a
+  cream-fill button rather than the accent.
+- 2026-06-23 — Don't gate the featured interaction behind hover/scroll on touch: render the desktop
+  sticky-scrub as a md:hidden stacked list where each step carries its own inline phone screen, so
+  every app view is reachable without a cursor.
