@@ -8,17 +8,18 @@ become automatic so this never exceeds ~30 lines.
 
 - 2026-06-23 — Don't gate the featured interaction behind hover/scroll on touch: render the desktop
   effect as a stacked/inline/centred variant so every view is reachable without a cursor.
-- 2026-06-23 — Before/after compare slider: clip the overlay image with `clipPath: inset(0 ${100-pos}% 0 0)`
-  from one percent of state; make the handle a `role="slider"` button with arrow-key handlers. Pointer
-  events (down/move/up + setPointerCapture) cover mouse and touch in one path — no separate touch code.
 - 2026-06-23 — CSS grid isn't masonry: for varied-height cards set `auto-rows-[14px]` + per-card
   `[grid-row:span_N]` to size by track count — deliberate asymmetry, no JS layout lib.
-- 2026-06-23 — For a cursor-reactive field of many marks, drive it on ONE canvas + rAF loop (clearRect,
-  per-node displacement by proximity to a spring-lagged pointer) — not N React/DOM nodes. Stays 60fps
-  with hundreds of ticks, and a phantom Lissajous pointer keeps it alive where there's no cursor.
 - 2026-06-23 — Accent contrast is ground-dependent: a bright accent that clears AA on near-black
   (≈4.8:1) can fail on warm paper (≈3.3:1) for small text. Keep ONE bright token for dark grounds +
   large display, and a deeper sibling (≈5:1) for small links/labels on light — pick per background.
-- 2026-06-23 — "Draw" an SVG diagram by animating framer `pathLength` 0→1 per segment with staggered
-  delays (gated on useInView + reduced-motion) — crisper and cheaper than animating path `d`, and the
-  stagger reads as construction order (down tube, top tube, stays…).
+- 2026-06-24 — A cursor-following hover-reveal (float a poster/image at the pointer over an index list)
+  is ONE fixed node driven by useMotionValue x/y + useSpring tracking clientX/clientY, mounted via
+  AnimatePresence keyed on the hovered index — never N nodes. The spring lag gives it weight; wire
+  onFocus/onBlur too so keyboard users get the reveal.
+- 2026-06-24 — Low-alpha hex on text (`${INK}99`, ie 60%) silently fails AA on warm cream for small
+  labels — alpha-over-cream lightens fast. Use a SOLID muted token tested ≈6:1 for small text; reserve
+  alpha ink only for large display where 3:1 suffices.
+- 2026-06-24 — Make a generic stock photo look like on-brand art: grayscale the picsum image, then lay
+  a `hsl(hue 62% 38%)` block over it with `mix-blend-multiply` (+ a bottom gradient for legible type).
+  Per-item hue turns one technique into a whole varied set and dodges the AI-stock look entirely.
