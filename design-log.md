@@ -7,24 +7,18 @@ become automatic so this never exceeds ~30 lines.
 ## Lessons
 
 - 2026-06-24 — Lift persistent UI (media/theme/cursor state) into a Provider or effect ABOVE <Routes> in <Layout>;
-  carry palette in CSS vars (`--accent`) on the root and `transition-colors` the readers — it survives navigation
-  for free and one setState crossfades every page.
-- 2026-06-24 — Re-animate KPIs on a control change: lift the period into context above <Routes>, slice the series,
-  and key count-up <Counter>s on `useEffect([to])` — one toggle recounts the whole view, each number honest per window.
-- 2026-06-24 — Hover image-reveal that READS: layer the "after" image under the "before", wipe the top one with
-  `group-hover:[clip-path:inset(0_0_100%_0)]`, and fade in a tiny caption naming what's revealed — interaction intent
-  stays legible even when the photo itself is abstract/stock.
-- 2026-06-24 — Encode a category as a small colour DOT (a `Record<Family,string>` of CSS vars) on a neutral chip, not
-  a fully tinted pill — adds real colour hierarchy without breaking the one-accent discipline or risking AA on text.
-- 2026-06-24 — Tracking glare on a 3D-tilt card: feed the SAME mx/my motion values into both rotateX/rotateY and a
-  `useMotionTemplate` radial-gradient background, blended `mix-blend-overlay` — one pointer source powers tilt + sheen,
-  so the "poster under glass" read costs almost nothing extra.
-- 2026-06-25 — Build a radial drag knob with no library: measure cursor angle as `atan2(dx, -dy)` (clockwise from 12
-  o'clock) off the element's center rect, clamp into the arc, and in the bottom dead-zone snap to whichever end is
-  nearer — then add role="slider"+aria+arrow keys so the same control is pointer- AND keyboard-driven.
-- 2026-06-25 — When one control morphs many readouts, interpolate the CONTINUOUS ones (`lerpColor`, meter values) but
-  SNAP discrete copy (tasting notes, product) to the nearest named stop via `Math.round(t*(n-1))` — fluid feel, yet the
-  words never read as nonsense between the labelled stops.
-- 2026-06-25 — SVG radial gradients render coarse; for a smooth gradient-filled focal object, draw the structural
-  arc/ticks/knob in SVG but overlay the hero element as an absolutely-positioned DOM node centered on it — CSS
-  gradients stay buttery at any scale.
+  carry palette in CSS vars on the root and `transition-colors` the readers — it survives navigation for free.
+- 2026-06-24 — Hover image-reveal that READS: layer "after" under "before", wipe the top with
+  `group-hover:[clip-path:inset(...)]`, fade in a tiny caption naming what's revealed — intent stays legible.
+- 2026-06-24 — Tracking glare on a 3D-tilt card: feed the SAME mx/my into rotateX/Y AND a `useMotionTemplate`
+  radial-gradient bg, blended `mix-blend-overlay` — one pointer source powers tilt + sheen.
+- 2026-06-25 — SVG radial gradients render coarse; draw structure (arcs/ticks) in SVG but overlay the smooth-gradient
+  focal element as an absolutely-positioned DOM node centered on it — CSS gradients stay buttery at any scale.
+- 2026-06-25 — Parallax a layered SVG scene off ONE springed pointer motion value: subscribe each depth layer's
+  `<motion.g>` via `.on("change")` into its own motion value scaled by a different factor — real depth, one source,
+  gated whole on `useReducedMotion`. Far layer moves least.
+- 2026-06-25 — Make an SVG hover-map keyboard-reachable: give each hotspot an invisible `<rect tabIndex role="button"
+  aria-label>` and wire onFocus/onBlur to the SAME activate/clear handlers as onPointerEnter/Leave — pointer and
+  keyboard drive one state, zero extra logic.
+- 2026-06-25 — Draw-in linework: animate `pathLength` 0→1 on `<motion.line>`/path with a per-edge `delay: i*0.05`
+  so a diagram/constellation assembles stroke by stroke instead of popping, with the nodes faintly visible underneath.
