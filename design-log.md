@@ -13,14 +13,12 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-24 — Make a generic stock photo look like on-brand art: grayscale the picsum image, then lay
   a `hsl(hue 62% 38%)` block over it with `mix-blend-multiply` (+ a bottom gradient for legible type).
   Per-item hue turns one technique into a whole varied set and dodges the AI-stock look entirely.
-- 2026-06-24 — Animate a variable font with the cursor: drive ONE useMotionValue (0..1 across the
-  element), useSpring it, useTransform to each axis, then bind with `useMotionTemplate\`'wght' ${w},
-  'opsz' ${o}\`` on style.fontVariationSettings. Always mirror the axes as sliders so it's reachable
-  without a pointer, and short-circuit to a static well-set specimen under prefers-reduced-motion.
-- 2026-06-24 — A contentEditable type-tester must be UNCONTROLLED: binding its children to React state
-  (`{text}` + onInput→setState) resets the caret to the start every keystroke. Render the initial text
-  once as children, never re-render it; the typed text survives unrelated prop changes (font/size) because
-  the node stays mounted. Add role="textbox" + aria-multiline + tabIndex so keyboard users reach it.
-- 2026-06-24 — Before promising a "variable type tester", check which axes the loaded css2 URL actually
-  ships as RANGES not instances: `wght@...400..700` is animatable, `wght@...500;600;700` is not. Fraunces
-  (`opsz,wght@0,9..144,400..700`) gives real wght+opsz ranges; lean on those, don't assume axes exist.
+- 2026-06-24 — Scroll-snap a chaptered home page by setting `scrollSnapType='y proximity'` on
+  `document.documentElement` in a useEffect (restore on unmount), NOT a nested overflow container —
+  that avoids double scrollbars and keeps the sticky nav + window scroll intact. Gate behind !reduce.
+- 2026-06-24 — Per-panel parallax: give each full-viewport section its own `useScroll({target, offset:
+  ["start end","end start"]})` + `useTransform` to a y%, and over-scale the image layer (`scale-[1.18]`)
+  so the drift never exposes a bare edge. Zero the transform under prefers-reduced-motion.
+- 2026-06-24 — Break the monotony of stacked full-bleed photo panels by alternating text alignment AND
+  gradient direction by index (`right = i%2`) — cheap rhythm with no new layouts; pass a `justify-end`
+  className through shared bits (Eyebrow) so flex rows align with the side too.
