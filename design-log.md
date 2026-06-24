@@ -18,7 +18,9 @@ become automatic so this never exceeds ~30 lines.
   so a diagram/constellation assembles stroke by stroke instead of popping, with the nodes faintly visible underneath.
 - 2026-06-24 — Morphing "blob" without SVG path-matching: animate `borderRadius` between 4 asymmetric values
   ("62% 38% 42% 58% / 56% 44% 56% 44%") plus scale+rotate on long offset loops, `blur()` + `mix-blend:screen` — organic, never repeats.
-- 2026-06-24 — Cursor-reactive ambient field cheaply: map pointer→center distance to a 0..1 `heat`, spring it, push into
-  a parent state ONCE via `spring.on("change")`, then drive child opacity/intensity off the number — no per-orb listeners.
-- 2026-06-24 — Photo treatment that fits a dark warm theme: `saturate(0.8) contrast(1.05) brightness(0.85) sepia(0.16)`
-  + a bottom-up ink gradient overlay unifies mismatched stock seeds into one duotone-ish palette so text stays legible on top.
+- 2026-06-24 — Hover image-reveal: one `window` pointermove → springed x/y on a single fixed preview node; each row only
+  flips a shared context `{src,alt,tag}`. One global listener for the whole menu, not one per row.
+- 2026-06-24 — Make that reveal degrade or it's desktop-only: anchor the preview to the focused row's
+  `getBoundingClientRect()` for keyboard, and render an always-on inline thumb (`md:hidden` on desktop) so touch users get the photo too.
+- 2026-06-24 — Cheap directional life on a trailing element: clamp pointer `dx` into a springed `rotate` (±9°) — the card
+  leans the way the cursor moves with no velocity tracking; gate the whole thing on `useReducedMotion`.
