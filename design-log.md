@@ -8,8 +8,6 @@ become automatic so this never exceeds ~30 lines.
 
 - 2026-06-23 — Don't gate the featured interaction behind hover/scroll on touch: render the desktop
   effect as a stacked/inline/centred variant so every view is reachable without a cursor.
-- 2026-06-23 — CSS grid isn't masonry: for varied-height cards set `auto-rows-[14px]` + per-card
-  `[grid-row:span_N]` to size by track count — deliberate asymmetry, no JS layout lib.
 - 2026-06-24 — Make a generic stock photo look like on-brand art: grayscale the picsum image, then lay
   a `hsl(hue 62% 38%)` block over it with `mix-blend-multiply` (+ a bottom gradient for legible type).
   Per-item hue turns one technique into a whole varied set and dodges the AI-stock look entirely.
@@ -19,6 +17,11 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-24 — Per-panel parallax: give each full-viewport section its own `useScroll({target, offset:
   ["start end","end start"]})` + `useTransform` to a y%, and over-scale the image layer (`scale-[1.18]`)
   so the drift never exposes a bare edge. Zero the transform under prefers-reduced-motion.
-- 2026-06-24 — Break the monotony of stacked full-bleed photo panels by alternating text alignment AND
-  gradient direction by index (`right = i%2`) — cheap rhythm with no new layouts; pass a `justify-end`
-  className through shared bits (Eyebrow) so flex rows align with the side too.
+- 2026-06-24 — Count-up counters: drive one rAF loop off `useInView(once)` + cubic ease-out, format with
+  `toLocaleString` and `fontVariantNumeric:'tabular-nums'` so digits don't jitter width; under reduce, set
+  the final value immediately. Make it the page's pulse by reusing one <Counter> for hero, deltas and proof.
+- 2026-06-24 — For a data/SaaS product, build the "screenshot" from inline SVG, not stock: animate the line
+  with framer `pathLength 0→1`, fake sparklines from tiny number arrays, and a retention heatmap from
+  `rgba(accent, 0.12 + v/100*0.7)`. Reads as real product, never AI-stock, and never 404s.
+- 2026-06-24 — Any `repeat:Infinity` marquee/loop must take `animate={reduce ? undefined : {...}}`; the
+  duplicated track then just sits static under a mask. Easy a11y miss when the loop isn't the featured effect.
