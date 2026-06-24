@@ -17,11 +17,11 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-24 — Per-panel parallax: give each full-viewport section its own `useScroll({target, offset:
   ["start end","end start"]})` + `useTransform` to a y%, and over-scale the image layer (`scale-[1.18]`)
   so the drift never exposes a bare edge. Zero the transform under prefers-reduced-motion.
-- 2026-06-24 — Count-up counters: drive one rAF loop off `useInView(once)` + cubic ease-out, format with
-  `toLocaleString` and `fontVariantNumeric:'tabular-nums'` so digits don't jitter width; under reduce, set
-  the final value immediately. Make it the page's pulse by reusing one <Counter> for hero, deltas and proof.
-- 2026-06-24 — For a data/SaaS product, build the "screenshot" from inline SVG, not stock: animate the line
-  with framer `pathLength 0→1`, fake sparklines from tiny number arrays, and a retention heatmap from
-  `rgba(accent, 0.12 + v/100*0.7)`. Reads as real product, never AI-stock, and never 404s.
-- 2026-06-24 — Any `repeat:Infinity` marquee/loop must take `animate={reduce ? undefined : {...}}`; the
-  duplicated track then just sits static under a mask. Easy a11y miss when the loop isn't the featured effect.
+- 2026-06-24 — Morphing blobs: animate a `motion.path`'s `d` through a keyframe ARRAY of structurally
+  identical path strings (same `M`+N×`C`+`Z`, same numeric-token count) — framer's complex type interpolates
+  the embedded numbers. Generate each frame with a closed Catmull-Rom spline from per-keyframe radii arrays.
+- 2026-06-24 — Make a cursor-reactive hero touch-reachable for free: track `onPointerMove` (pointer events
+  fire for touch drags too), feed normalized x/y into `useSpring` → `useTransform` for layered parallax and a
+  `useMotionTemplate` radial-gradient centre. One handler covers mouse + touch; gate the d-morph behind !reduce.
+- 2026-06-24 — Re-check dim "faint" neutrals at their SMALLEST size: a tone that passes AA at 16px can fail at
+  11px uppercase mono. Compute the ratio against the real bg and lift it to ≥4.5, or keep it for glyphs only.
