@@ -16,13 +16,15 @@ become automatic so this never exceeds ~30 lines.
   stays legible even when the photo itself is abstract/stock.
 - 2026-06-24 — Encode a category as a small colour DOT (a `Record<Family,string>` of CSS vars) on a neutral chip, not
   a fully tinted pill — adds real colour hierarchy without breaking the one-accent discipline or risking AA on text.
-- 2026-06-24 — Combining a resting transform with a hover transform: drive BOTH via Tailwind translate classes — an
-  inline `style.transform` wins specificity and silently kills the `group-hover:` class.
 - 2026-06-24 — Tracking glare on a 3D-tilt card: feed the SAME mx/my motion values into both rotateX/rotateY and a
   `useMotionTemplate` radial-gradient background, blended `mix-blend-overlay` — one pointer source powers tilt + sheen,
   so the "poster under glass" read costs almost nothing extra.
-- 2026-06-24 — Native `<select>`/`<option>` ignore Tailwind and inherit OS chrome, so on a dark form they render
-  dark-on-dark; set an inline LIGHT `{background,color}` on each `<option>` so the open dropdown is always legible.
-- 2026-06-24 — Seamless infinite marquee: render the row twice in a `flex w-max` track, animate `translateX` 0→-50%,
-  add edge `from-bg to-transparent` fade masks + `hover:[animation-play-state:paused]`, and `animation:none` under
-  `prefers-reduced-motion`.
+- 2026-06-25 — Build a radial drag knob with no library: measure cursor angle as `atan2(dx, -dy)` (clockwise from 12
+  o'clock) off the element's center rect, clamp into the arc, and in the bottom dead-zone snap to whichever end is
+  nearer — then add role="slider"+aria+arrow keys so the same control is pointer- AND keyboard-driven.
+- 2026-06-25 — When one control morphs many readouts, interpolate the CONTINUOUS ones (`lerpColor`, meter values) but
+  SNAP discrete copy (tasting notes, product) to the nearest named stop via `Math.round(t*(n-1))` — fluid feel, yet the
+  words never read as nonsense between the labelled stops.
+- 2026-06-25 — SVG radial gradients render coarse; for a smooth gradient-filled focal object, draw the structural
+  arc/ticks/knob in SVG but overlay the hero element as an absolutely-positioned DOM node centered on it — CSS
+  gradients stay buttery at any scale.
