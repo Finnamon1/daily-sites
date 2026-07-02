@@ -14,8 +14,6 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-25 — Make an SVG hover-map keyboard-reachable: give each hotspot an invisible `<rect tabIndex role="button"
   aria-label>` and wire onFocus/onBlur to the SAME activate/clear handlers as onPointerEnter/Leave — pointer and
   keyboard drive one state, zero extra logic.
-- 2026-06-25 — Draw-in linework: animate `pathLength` 0→1 on `<motion.line>`/path with a per-edge `delay: i*0.05`
-  so a diagram/constellation assembles stroke by stroke instead of popping, with the nodes faintly visible underneath.
 - 2026-06-24 — Hover image-reveal: one `window` pointermove → springed x/y on a single fixed preview node; each row only
   flips a shared context `{src,alt,tag}`. One global listener for the whole menu, not one per row.
 - 2026-06-24 — Make that reveal degrade or it's desktop-only: anchor the preview to the focused row's
@@ -27,3 +25,10 @@ become automatic so this never exceeds ~30 lines.
 - 2026-07-02 — Treat a hero canvas as a resource AND a layout element: cap DPR at 2, pause rAF on IntersectionObserver
   exit + tab hide, dispose everything on unmount — and reposition/rescale the 3D object per breakpoint inside the resize
   handler, with a mobile ink scrim so white type never sits on bare chrome.
+- 2026-07-02 — One profile, two renderers: define product shapes as control-point radius profiles (Catmull-Rom sampled
+  once); the same arrays drive the 3D lathe mesh AND the 2D SVG silhouettes elsewhere on the page — cohesion for free.
+- 2026-07-02 — Scroll-morphing product stage: sticky h-screen canvas + a `-mt-[100vh]` step track observed with
+  rootMargin "-45% 0px -45%"; per step, lerp the lathe ring radii toward the target profile and recompute normals only
+  while |Δ|>ε, rendering behind a dirty flag — one persistent object, no scene teardown between steps.
+- 2026-07-02 — Never ease with fixed per-frame factors on WebGL state: use `1 - exp(-dt·k)`. On slow devices a 0.09/frame
+  color lerp visibly never arrives; the time-based form converges identically at any framerate.
