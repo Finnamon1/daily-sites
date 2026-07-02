@@ -16,11 +16,14 @@ become automatic so this never exceeds ~30 lines.
   keyboard drive one state, zero extra logic.
 - 2026-06-25 — Draw-in linework: animate `pathLength` 0→1 on `<motion.line>`/path with a per-edge `delay: i*0.05`
   so a diagram/constellation assembles stroke by stroke instead of popping, with the nodes faintly visible underneath.
-- 2026-06-24 — Morphing "blob" without SVG path-matching: animate `borderRadius` between 4 asymmetric values
-  ("62% 38% 42% 58% / 56% 44% 56% 44%") plus scale+rotate on long offset loops, `blur()` + `mix-blend:screen` — organic, never repeats.
 - 2026-06-24 — Hover image-reveal: one `window` pointermove → springed x/y on a single fixed preview node; each row only
   flips a shared context `{src,alt,tag}`. One global listener for the whole menu, not one per row.
 - 2026-06-24 — Make that reveal degrade or it's desktop-only: anchor the preview to the focused row's
   `getBoundingClientRect()` for keyboard, and render an always-on inline thumb (`md:hidden` on desktop) so touch users get the photo too.
-- 2026-06-24 — Cheap directional life on a trailing element: clamp pointer `dx` into a springed `rotate` (±9°) — the card
-  leans the way the cursor moves with no velocity tracking; gate the whole thing on `useReducedMotion`.
+- 2026-07-02 — Liquid-chrome 3D with zero custom GLSL: `MeshPhysicalMaterial` (metalness 1, roughness ~0.15,
+  iridescence ~0.9) + PMREM `RoomEnvironment` on an alpha canvas, floated over a DOM CSS radial glow — no lights needed.
+- 2026-07-02 — Drive WebGL and DOM parallax from the SAME springed pointer motion values: the canvas reads `.get()`
+  inside its rAF loop while DOM layers `useTransform` at their own factors — one source, coherent depth, one reduced-motion gate.
+- 2026-07-02 — Treat a hero canvas as a resource AND a layout element: cap DPR at 2, pause rAF on IntersectionObserver
+  exit + tab hide, dispose everything on unmount — and reposition/rescale the 3D object per breakpoint inside the resize
+  handler, with a mobile ink scrim so white type never sits on bare chrome.
