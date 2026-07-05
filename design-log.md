@@ -6,13 +6,9 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-25 — Make an SVG hover-map keyboard-reachable: give each hotspot an invisible `<rect tabIndex role="button"
-  aria-label>` and wire onFocus/onBlur to the SAME activate/clear handlers as onPointerEnter/Leave — pointer and
-  keyboard drive one state, zero extra logic.
-- 2026-06-24 — Hover image-reveal: one `window` pointermove → springed x/y on a single fixed preview node; each row only
-  flips a shared context `{src,alt,tag}`. One global listener for the whole menu, not one per row.
-- 2026-06-24 — Make that reveal degrade or it's desktop-only: anchor the preview to the focused row's
-  `getBoundingClientRect()` for keyboard, and render an always-on inline thumb (`md:hidden` on desktop) so touch users get the photo too.
+- 2026-06-25 — Hotspots (SVG rects or DOM rows) get `tabIndex role="button" aria-label` with onFocus/onBlur wired to the
+  SAME handlers as pointer enter/leave — pointer and keyboard drive one state; anchor any floating preview to the focused
+  element's rect and keep an inline fallback for touch.
 - 2026-07-02 — Liquid-chrome 3D with zero custom GLSL: `MeshPhysicalMaterial` (metalness 1, roughness ~0.15,
   iridescence ~0.9) + PMREM `RoomEnvironment` on an alpha canvas, floated over a DOM CSS radial glow — no lights needed.
 - 2026-07-02 — Drive WebGL and DOM parallax from the SAME springed pointer motion values: the canvas reads `.get()`
@@ -36,3 +32,10 @@ become automatic so this never exceeds ~30 lines.
 - 2026-07-02 — Particles around a travelling camera: keep one fixed column, wrap each point's y by ±half-range relative
   to `camera.y` per frame, and drift them slowly AGAINST the travel direction — the wrap is invisible and the drift
   sells the motion.
+- 2026-07-02 — A state-driven scene beats a scripted one: put the whole atmosphere (sun, sky, fog, particle mode) behind
+  one small state object read via ref in the rAF loop, and ease EVERY parameter toward its target — switching weather
+  feels analogue, and reduced-motion is just ease=1.
+- 2026-07-02 — 24-hour skies are a keyframe table `[(hour, hex)]` lerped, plus one `daylight(h)=sin((h−6)/12·π)` scalar
+  reused for sun elevation, light intensity and star/moon opacity — one number keeps the whole scene in the same hour.
+- 2026-07-02 — Native `<input type=range>` + `aria-pressed` buttons are the cheapest 3D controls: keyboard-accessible for
+  free, and deriving a DOM readout from the same state (`readout(machine)`) turns the toy into the product demo.
