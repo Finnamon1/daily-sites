@@ -6,11 +6,6 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-25 — SVG radial gradients render coarse; draw structure (arcs/ticks) in SVG but overlay the smooth-gradient
-  focal element as an absolutely-positioned DOM node centered on it — CSS gradients stay buttery at any scale.
-- 2026-06-25 — Parallax a layered SVG scene off ONE springed pointer motion value: subscribe each depth layer's
-  `<motion.g>` via `.on("change")` into its own motion value scaled by a different factor — real depth, one source,
-  gated whole on `useReducedMotion`. Far layer moves least.
 - 2026-06-25 — Make an SVG hover-map keyboard-reachable: give each hotspot an invisible `<rect tabIndex role="button"
   aria-label>` and wire onFocus/onBlur to the SAME activate/clear handlers as onPointerEnter/Leave — pointer and
   keyboard drive one state, zero extra logic.
@@ -32,3 +27,12 @@ become automatic so this never exceeds ~30 lines.
   while |Δ|>ε, rendering behind a dirty flag — one persistent object, no scene teardown between steps.
 - 2026-07-02 — Never ease with fixed per-frame factors on WebGL state: use `1 - exp(-dt·k)`. On slow devices a 0.09/frame
   color lerp visibly never arrives; the time-based form converges identically at any framerate.
+- 2026-07-02 — Scroll-as-travel: build the scene in one true world column (1 unit = N metres) and map scroll→camera via
+  piecewise waypoints anchored to section centers (`offsetTop + h/2 − vh/2`) — copy and 3D can never drift apart, and a
+  live HUD (depth/pressure/temp) falls out of the same one helper.
+- 2026-07-02 — Creatures without shaders or rigs: additive-blended basic materials plus a few indexed sines — dome
+  pulse `scale.y=1+sin`, width `1/√pulse` to conserve volume, tentacle points swayed by `sin(t+k·0.55)` scaled by k —
+  read as alive from arm's length.
+- 2026-07-02 — Particles around a travelling camera: keep one fixed column, wrap each point's y by ±half-range relative
+  to `camera.y` per frame, and drift them slowly AGAINST the travel direction — the wrap is invisible and the drift
+  sells the motion.
