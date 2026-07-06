@@ -9,8 +9,6 @@ become automatic so this never exceeds ~30 lines.
 - 2026-06-25 — Hotspots (SVG rects or DOM rows) get `tabIndex role="button" aria-label` with onFocus/onBlur wired to the
   SAME handlers as pointer enter/leave — pointer and keyboard drive one state; anchor any floating preview to the focused
   element's rect and keep an inline fallback for touch.
-- 2026-07-02 — Drive WebGL and DOM parallax from the SAME springed pointer motion values: the canvas reads `.get()`
-  inside its rAF loop while DOM layers `useTransform` at their own factors — one source, coherent depth, one reduced-motion gate.
 - 2026-07-02 — Treat a hero canvas as a resource AND a layout element: cap DPR at 2, pause rAF on IntersectionObserver
   exit + tab hide, dispose everything on unmount — and reposition/rescale the 3D object per breakpoint inside the resize
   handler, with a mobile ink scrim so white type never sits on bare chrome.
@@ -43,3 +41,10 @@ become automatic so this never exceeds ~30 lines.
 - 2026-07-02 — Give every canvas toy a "do it for me" button: a scripted actor (serpentine auto-mower) is the keyboard
   and reduced-motion path AND the self-running demo; expose it as a tiny imperative API on a ref so the rAF loop never
   touches React state.
+- 2026-07-02 — 3D display type without fonts: glyphs as fat polyline strokes → CatmullRom → `TubeGeometry` + sphere
+  end-caps, plus a second tube at radius+Δ in black `BackSide` for the inverted-hull outline — instant bubble letters.
+- 2026-07-02 — `CanvasTexture` is an art department: draw the surface (bricks, stains, faded tags) into one 2D canvas,
+  and paint at runtime into a second transparent one (`texture.needsUpdate`) — spray, drips and buff patches, no shaders.
+- 2026-07-02 — Brush tools must interpolate: pointer events arrive sparsely, so lay dots along the whole segment since
+  the last event with a staleness cutoff so new strokes don't join old ones — and put `pointer-events-none` on every
+  hero overlay container (plus `select-none` on the section) or the canvas never hears the drag.
