@@ -6,9 +6,6 @@ become automatic so this never exceeds ~30 lines.
 
 ## Lessons
 
-- 2026-06-25 — Hotspots (SVG rects or DOM rows) get `tabIndex role="button" aria-label` with onFocus/onBlur wired to the
-  SAME handlers as pointer enter/leave — pointer and keyboard drive one state; anchor any floating preview to the focused
-  element's rect and keep an inline fallback for touch.
 - 2026-07-02 — Treat a hero canvas as a resource AND a layout element: cap DPR at 2, pause rAF on IntersectionObserver
   exit + tab hide, dispose everything on unmount — and reposition/rescale the 3D object per breakpoint inside the resize
   handler, with a mobile ink scrim so white type never sits on bare chrome.
@@ -48,3 +45,10 @@ become automatic so this never exceeds ~30 lines.
 - 2026-07-02 — Brush tools must interpolate: pointer events arrive sparsely, so lay dots along the whole segment since
   the last event with a staleness cutoff so new strokes don't join old ones — and put `pointer-events-none` on every
   hero overlay container (plus `select-none` on the section) or the canvas never hears the drag.
+- 2026-07-02 — Compute the commentary: pure functions over the same arrays the charts draw (1y vs CAGR, margin drift in
+  bps, FCF÷NI, share-count delta) generate insight sentences AND status flags that stay correct for any data source —
+  a working analysis layer costs ~100 lines.
+- 2026-07-02 — Snapshot-first, live-optional: ship hand-compiled data that renders instantly, then let a bring-your-own
+  API key fetch into the SAME shape (cache in a ref, visible fallback banner) — zero-setup demo, one-paste upgrade.
+- 2026-07-02 — One outlier ruins a scatter: compress the axis with sqrt (ticks at transformed positions) so the pack
+  stays readable while the hyper-grower keeps its crown.
