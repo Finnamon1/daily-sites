@@ -26,15 +26,11 @@ become automatic so this never exceeds ~30 lines.
 - 2026-07-02 — A state-driven scene beats a scripted one: put the whole atmosphere (sun, sky, fog, particle mode) behind
   one small state object read via ref in the rAF loop, and ease EVERY parameter toward its target — switching weather
   feels analogue, and reduced-motion is just ease=1.
-- 2026-07-02 — 24-hour skies are a keyframe table `[(hour, hex)]` lerped, plus one `daylight(h)=sin((h−6)/12·π)` scalar
-  reused for sun elevation, light intensity and star/moon opacity — one number keeps the whole scene in the same hour.
 - 2026-07-02 — Native `<input type=range>` + `aria-pressed` buttons are the cheapest 3D controls: keyboard-accessible for
   free, and deriving a DOM readout from the same state (`readout(machine)`) turns the toy into the product demo.
 - 2026-07-02 — InstancedMesh toys: thousands of touchable objects in one draw call — keep per-instance state in plain
   Float32Arrays, recompose matrices only for an active Set of animating instances, and bucket positions in a spatial
   hash so a cursor brush is O(nearby), never O(N).
-- 2026-07-02 — Encode the gesture, not just the position: the SIGN of pointer dx picked the stripe tone, turning a drag
-  into real alternating mower stripes — direction/velocity are free flavour every brush interaction should use.
 - 2026-07-02 — Give every canvas toy a "do it for me" button: a scripted actor (serpentine auto-mower) is the keyboard
   and reduced-motion path AND the self-running demo; expose it as a tiny imperative API on a ref so the rAF loop never
   touches React state.
@@ -52,3 +48,9 @@ become automatic so this never exceeds ~30 lines.
   API key fetch into the SAME shape (cache in a ref, visible fallback banner) — zero-setup demo, one-paste upgrade.
 - 2026-07-02 — One outlier ruins a scatter: compress the axis with sqrt (ticks at transformed positions) so the pack
   stays readable while the hyper-grower keeps its crown.
+- 2026-07-02 — BYOK with a free fallback: default to a keyless engine so the demo works instantly, gate the premium one
+  behind a pasted localStorage key, and give every engine failure a specific human toast that names the fix.
+- 2026-07-02 — Print realism is two blend rules: `multiply` (~0.96 opacity) on light garments, a white DTG-style
+  underbase rect behind the art on dark ones — applied identically in DOM and in the canvas export so mockup = PNG.
+- 2026-07-02 — Keep the product as ONE SVG node: recolour it by prop, reuse it at any size (studio, wall, cart thumbs),
+  and serialize the same node into canvas for downloads — fetch remote art to a blob first so the canvas never taints.
